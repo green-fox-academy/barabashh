@@ -13,12 +13,9 @@ public class DrawDiagonal {
             //draw the first *
             System.out.print("%");
             for (int i = 1; i < num - 1; i++) {
-                if (i == j)
-                {
+                if (i == j) {
                     System.out.print("%");
-                }
-                else
-                {
+                } else {
                     System.out.print(" ");
                 }
             }

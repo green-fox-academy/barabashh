@@ -11,26 +11,25 @@ public class DrawDiamond {
         for (int i = 0; i < num; i++) {
             if (startNum % 2 != 0) System.out.print(" ");
             for (int j = 0; j < white; j++) System.out.print(" ");
-            for (int j = 0; j < star -1; j++) System.out.print("*");
+            for (int j = 0; j < star - 1; j++) System.out.print("*");
             System.out.println("*");
             white--;
-            star+=2;
+            star += 2;
         }
-        if (startNum % 2 != 0)
-        {
+        if (startNum % 2 != 0) {
             //we need to draw an extra line into the middle if StartNumber is odd
             for (int j = 0; j < star - 1; j++) System.out.print("*");
             System.out.println("*");
         }
         white++;
-        star-=2;
+        star -= 2;
         for (int i = 0; i < num; i++) {
             if (startNum % 2 != 0) System.out.print(" ");
             for (int j = 0; j < white; j++) System.out.print(" ");
-            for (int j = 0; j < star -1; j++) System.out.print("*");
+            for (int j = 0; j < star - 1; j++) System.out.print("*");
             System.out.println("*");
             white++;
-            star-=2;
+            star -= 2;
         }
     }
 

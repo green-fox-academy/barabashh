@@ -8,7 +8,7 @@ public class ParametricAverage {
         System.out.println("OK, please enter the numbers now:");
         int sum = 0;
         for (int i = 0; i < n; i++) {
-                sum += scanner.nextInt();
+            sum += scanner.nextInt();
         }
         System.out.print("Sum: " + sum);
         System.out.println(", Average: " + sum / n);
