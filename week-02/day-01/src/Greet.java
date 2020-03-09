@@ -1,10 +1,10 @@
 public class Greet {
     public static void main(String[] args) {
         String al = "Green Fox";
-        Greet(al);
+        greet(al);
     }
 
-    public static void Greet(String name) {
+    public static void greet(String name) {
         System.out.println("Greetings dear, " + name);
     }
 }
