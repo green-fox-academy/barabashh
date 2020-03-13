@@ -13,7 +13,7 @@ public class Doubled {
         Path fileToDecryptPath = Paths.get(fileToDecrypt);
         Path writeTheDecryptedFileToPath = Paths.get(writeTheDecryptedFileTo);
         List<String> contentToDeCrypt;
-        List<String> contentToWrite = new ArrayList<String>();
+        List<String> contentToWrite = new ArrayList<>();
         try {
             contentToDeCrypt = Files.readAllLines(fileToDecryptPath);
         } catch (Exception e) {

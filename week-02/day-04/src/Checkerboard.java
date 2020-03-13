@@ -1,30 +1,21 @@
 import javax.swing.*;
-
 import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class CenterBoxFunction {
-
-    public static void mainDraw(Graphics graphics){
-        // create a function that draws one square and takes 2 parameters:
-        // the square size and the graphics
-        // and draws a square of that size to the center of the canvas.
-        // draw 3 squares with that function.
-        // avoid code duplication.
-        for (int i = 1; i < 4; i++) {
-            centeredBox(i * 100, graphics);
+public class Checkerboard {
+    public static void mainDraw(Graphics graphics) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((i + j) % 2 == 0) {
+                    graphics.setColor(Color.BLACK);
+                } else {
+                    graphics.setColor(Color.WHITE);
+                }
+                graphics.fillRect(i * WIDTH / 8, j * WIDTH / 8, WIDTH / 8, WIDTH / 8);
+            }
         }
 
-
-    }
-    public static void centeredBox(int size, Graphics graphics) {
-        graphics.drawRect((WIDTH - size) /2, (HEIGHT - size) / 2, size, size);
-    }
-
-    //56 to 255
-    public static int randomNumber() {
-        return (int) (Math.random() * 200 + 56);
     }
 
     // Don't touch the code below
