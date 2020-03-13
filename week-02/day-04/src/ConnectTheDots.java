@@ -15,10 +15,10 @@ public class ConnectTheDots {
         graphics.setColor(new Color(0,200,0));
 
         int[][] box = {{10, 10}, {290, 10}, {290, 290}, {10, 290}};
-        int[][] misteryShape = {{50, 100}, {70, 70}, {80, 90}, {90, 90}, {100, 70},
+        int[][] mysteryShape = {{50, 100}, {70, 70}, {80, 90}, {90, 90}, {100, 70},
                 {120, 100}, {85, 130}, {50, 100}};
 
-        int[][][] shapeArray = {box, misteryShape};
+        int[][][] shapeArray = {box, mysteryShape};
         for (int j = 0; j < 2; j++) {
             int[] shapeX = new int[shapeArray[j].length];
             int[] shapeY = new int[shapeArray[j].length];

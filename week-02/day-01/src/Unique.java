@@ -8,7 +8,7 @@ public class Unique {
     }
 
     public static ArrayList<Integer> unique(int[] arrayToDedupe) {
-        ArrayList<Integer> uniqueList = new ArrayList<Integer>();
+        ArrayList<Integer> uniqueList = new ArrayList<>();
         for (int n : arrayToDedupe) {
             if (uniqueList.contains(n) == false)
             {
