@@ -18,7 +18,9 @@ public class SuperHexagon {
         double k = j * 1.5;
         int l = i + j;
         drawLineWithDoubleValues(k - 0.5, l, k + 0.5, l, graphics); //horizontal lines, right side and center
-        if (j != 0) drawLineWithDoubleValues(-(k + 0.5), l, -(k - 0.5), l, graphics); //horizontal lines, left side
+        if (j != 0) {
+          drawLineWithDoubleValues(-(k + 0.5), l, -(k - 0.5), l, graphics); //horizontal lines, left side
+        }
         if ((i / 2) != (8 - j - 1)) {
           drawLineWithDoubleValues(k + 0.5, l, k + 1, l + 1, graphics); // \ lines, right side and center
           drawLineWithDoubleValues(-(k + 0.5), l, -(k + 1), l + 1, graphics); // / lines, left side
@@ -31,7 +33,7 @@ public class SuperHexagon {
 
   public static void drawLineWithDoubleValues(double x1, double y1, double x2, double y2, Graphics graphics) {
     graphics.drawLine((int) (WIDTH / 2 + x1 * lineLength), (int) (y1 * lineHeight) + offsetY,
-            (int) (WIDTH / 2 + x2 * lineLength), (int) (y2 * lineHeight) + offsetY);
+        (int) (WIDTH / 2 + x2 * lineLength), (int) (y2 * lineHeight) + offsetY);
   }
 
   // Don't touch the code below
