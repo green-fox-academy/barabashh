@@ -17,15 +17,14 @@ public class Extension {
   }
 
   int countMedian(List<Integer> numbers) {
-    int[] arrNumbers = numbers.stream().mapToInt(Integer::intValue).toArray();
-    Arrays.sort(arrNumbers);
-    int lengthOfTheArray = arrNumbers.length;
-    if (lengthOfTheArray % 2 == 0) //list has even number of numbers
+    Collections.sort(numbers);
+    int lengthOfTheList = numbers.size();
+    if (lengthOfTheList % 2 == 0) //list has even number of numbers
     {
-      return (arrNumbers[lengthOfTheArray / 2 - 1] + arrNumbers[lengthOfTheArray / 2]) / 2;
+      return (numbers.get(lengthOfTheList / 2 - 1) + numbers.get(lengthOfTheList / 2)) / 2;
     } else //list has odd number of numbers
     {
-      return arrNumbers[lengthOfTheArray / 2];
+      return numbers.get(lengthOfTheList / 2);
     }
   }
 
