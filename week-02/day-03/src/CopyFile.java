@@ -5,37 +5,33 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class CopyFile {
+  public static List<String> content;
+
   public static void main(String[] args) {
-    copyFile("assets/firstFile.txt", "assets/firstFile2.txt");
+    boolean test = copyFile("assets/firstFile.txt", "assets/firstFile2.txt");
   }
 
   public static Boolean copyFile(String copyFrom, String copyTo) {
     Path copyFromPath = Paths.get(copyFrom);
     Path copyToPath = Paths.get(copyTo);
-    List<String> content;
-    try {
-      content = readAllLinesFromFile(copyFromPath);
-    } catch (IOException e) {
+
+    if (readAllLinesFromFile(copyFromPath) && writeAllLinesToFile(copyToPath)) {
+      return true;
+    } else {
       return false;
     }
-      if (writeAllLinesToFile(copyToPath, content)) {
-          return true;
-      } else {
-          return false;
-      }
   }
 
-  public static List<String> readAllLinesFromFile(Path filePath) throws IOException {
-    List<String> content;
+  public static boolean readAllLinesFromFile(Path filePath) {
     try {
       content = Files.readAllLines(filePath);
     } catch (IOException e) {
-      throw e;
+      return false;
     }
-    return content;
+    return true;
   }
 
-  public static boolean writeAllLinesToFile(Path filePath, List<String> content) {
+  public static boolean writeAllLinesToFile(Path filePath) {
     try {
       Files.write(filePath, content);
     } catch (IOException e) {
