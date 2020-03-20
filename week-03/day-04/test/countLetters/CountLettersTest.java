@@ -21,7 +21,7 @@ public class CountLettersTest {
     testResult.put('p', 2);
     testResult.put('l', 1);
     testResult.put('e', 1);
-    assertEquals(testResult,countLetters.countLetters("Apple"));
+    assertEquals(testResult, countLetters.countLetters("Apple"));
   }
 
   @Test
@@ -38,12 +38,12 @@ public class CountLettersTest {
     testResult.put('l', 1);
     testResult.put('t', 1);
     testResult.put('y', 1);
-    assertEquals(testResult,countLetters.countLetters("Responsibility"));
+    assertEquals(testResult, countLetters.countLetters("Responsibility"));
   }
 
   @Test
   public void shoudReturnEmptyMapFromEmptyString() {
     HashMap<Character, Integer> testResult = new HashMap<>();
-    assertEquals(testResult,countLetters.countLetters(""));
+    assertEquals(testResult, countLetters.countLetters(""));
   }
 }
