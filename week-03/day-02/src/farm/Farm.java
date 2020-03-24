@@ -16,6 +16,9 @@ public class Farm {
       Animal animal = new Animal();
       animals.add(animal);
       slots--;
+    }else
+    {
+      System.out.println("The farm is full, there are no more free slots!");
     }
   }
 
