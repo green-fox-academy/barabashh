@@ -4,7 +4,6 @@ public class FleetOfThings {
 
   public static void main(String[] args) {
     Fleet fleet = new Fleet();
-
     // - In the main method create a fleet
     // - Achieve this output:
     // Create a fleet of things to have this output:

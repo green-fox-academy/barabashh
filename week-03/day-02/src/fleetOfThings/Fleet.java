@@ -1,6 +1,7 @@
 package fleetOfThings;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by aze on 2017.03.29..
@@ -19,6 +20,7 @@ public class Fleet {
   @Override
   public String toString() {
     String result = "";
+    //Collections.sort(things);  //Testing comparable capabilities
     for(int i = 0; i < things.size(); i++) {
       result += (i+1) + ". " + things.get(i) + "\n";
     }
