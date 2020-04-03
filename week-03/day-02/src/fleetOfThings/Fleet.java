@@ -21,8 +21,8 @@ public class Fleet {
   public String toString() {
     String result = "";
     //Collections.sort(things);  //Testing comparable capabilities
-    for(int i = 0; i < things.size(); i++) {
-      result += (i+1) + ". " + things.get(i) + "\n";
+    for (int i = 0; i < things.size(); i++) {
+      result += (i + 1) + ". " + things.get(i) + "\n";
     }
     return result;
   }
