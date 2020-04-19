@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Items List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>My Shop</h1>
+<button onclick="window.location.href = '/only-available';">ONLY AVAILABLE</button>
+<button onclick="window.location.href = '/cheapest-first';">CHEAPEST FIRST</button>
+<button onclick="window.location.href = '/contains-nike';">CONTAINS NIKE</button>
+<button onclick="window.location.href = '/average-stock';">AVERAGE STOCK</button>
+<button onclick="window.location.href = '/most-expensive';">MOST EXPENSIVE AVAILABLE</button>
+<p th:if="${singleSentence != null}" th:text="${singleSentence}"/>
+<table th:if="${shopItems != null}">
+    <thead>
+    <tr>
+        <th>Name</th><th>Description</th><th>Price</th><th>Quantity of stock</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="shopItem : ${shopItems}">
+        <td th:text="${shopItem.getName()}"></td>
+        <td th:text="${shopItem.getDescription()}"></td>
+        <td th:text="${shopItem.getPrice()}"></td>
+        <td th:text="${shopItem.getQuantityOfStock()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
