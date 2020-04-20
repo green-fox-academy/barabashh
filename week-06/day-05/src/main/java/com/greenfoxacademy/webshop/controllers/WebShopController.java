@@ -5,6 +5,8 @@ import com.greenfoxacademy.webshop.models.Store;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebShopController {
@@ -56,4 +58,10 @@ public class WebShopController {
     return "webshop";
   }
 
+  @RequestMapping(value = "/search", method = RequestMethod.POST)
+  public String search(@RequestParam("searchWord") String searchWord, Model model) {
+    model.addAttribute( "shopItems",
+        store.getItemsContainingSearchKeyword(searchWord));
+    return "webshop";
+  }
 }

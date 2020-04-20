@@ -83,4 +83,13 @@ public class Store {
       return -1;
     }
   }
+
+  public List<ShopItem> getItemsContainingSearchKeyword(String keyword) {
+    List<ShopItem> shopItemList = getShopItemList()
+        .stream()
+        .filter(i -> i.getName().toLowerCase().contains(keyword) ||
+            i.getDescription().toLowerCase().contains(keyword))
+        .collect(Collectors.toList());
+    return shopItemList;
+  }
 }

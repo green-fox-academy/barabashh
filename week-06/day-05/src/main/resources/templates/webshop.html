@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Items List</title>
@@ -12,7 +12,12 @@
 <button onclick="window.location.href = '/contains-nike';">CONTAINS NIKE</button>
 <button onclick="window.location.href = '/average-stock';">AVERAGE STOCK</button>
 <button onclick="window.location.href = '/most-expensive';">MOST EXPENSIVE AVAILABLE</button>
-<p th:if="${singleSentence != null}" th:text="${singleSentence}"/>
+<form action="/search" method="POST">
+<Label>Search for:</Label>
+    <input type="text" id="searchWord" name="searchWord" placeholder="...something like nike">
+    <button id="btnSearch" href="#">Search</button>
+</form>
+<p th:if="${singleSentence != null}" th:text="${singleSentence}"></p>
 <table th:if="${shopItems != null}">
     <thead>
     <tr>
