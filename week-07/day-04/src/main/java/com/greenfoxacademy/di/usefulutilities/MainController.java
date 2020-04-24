@@ -23,7 +23,13 @@ public class MainController {
   }
 
   @GetMapping("/colored")
-  public String Colored(Model model){
+  public String colored(Model model){
+    model.addAttribute("backGroundColor",utilityService.randomColor());
+    return "colored";
+  }
+
+  @GetMapping("/email")
+  public String emailValidator(Model model){
     model.addAttribute("backGroundColor",utilityService.randomColor());
     return "colored";
   }
