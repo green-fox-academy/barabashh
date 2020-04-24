@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/useful")
@@ -16,9 +17,8 @@ public class MainController {
     this.utilityService = utilityService;
   }
 
-  @GetMapping("/")
+  @GetMapping("")
   public String Index() {
-
     return "index";
   }
 
@@ -28,4 +28,10 @@ public class MainController {
     return "colored";
   }
 
+  @GetMapping("/email")
+  public String emailValidator(@RequestParam("email") String email, Model model){
+    model.addAttribute("emailAddress",email);
+    model.addAttribute("isValid",utilityService.validateEmail(email));
+    return "email";
+  }
 }
