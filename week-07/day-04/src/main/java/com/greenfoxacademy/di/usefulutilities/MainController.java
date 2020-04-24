@@ -28,11 +28,4 @@ public class MainController {
     return "colored";
   }
 
-  @GetMapping("/email")
-  public String emailValidator(Model model){
-    model.addAttribute("backGroundColor",utilityService.randomColor());
-    return "colored";
-  }
-
-
 }
