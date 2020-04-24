@@ -1,0 +1,6 @@
+body {
+    padding-left:10em;
+}
+ul>li>img {
+    display: block;
+}
