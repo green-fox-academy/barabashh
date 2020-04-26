@@ -1,10 +1,8 @@
 package com.greenfoxacademy.springstart.controllers;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 public class Greeting {
-  private long greetCount;
-  private String content;
+  public long greetCount;
+  public String content;
 
   public Greeting(long greetCount, String content) {
     this.greetCount = greetCount;
