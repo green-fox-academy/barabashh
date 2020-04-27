@@ -18,13 +18,6 @@ public class TodoController {
   @Autowired
   public TodoController(TodoRepository todoRepository) {
     this.todoRepository = todoRepository;
-    Todo todo1 = new Todo();
-    todo1.setTitle("Start the day");
-    Todo todo2 = new Todo();
-    todo2.setTitle("Finish H2");
-
-    todoRepository.save(todo1);
-    todoRepository.save(todo2);
   }
 
   @RequestMapping(path = {"/", "/list"}, method = RequestMethod.GET)
