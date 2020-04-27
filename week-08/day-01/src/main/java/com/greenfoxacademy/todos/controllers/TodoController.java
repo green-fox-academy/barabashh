@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TodoController {
@@ -19,15 +18,18 @@ public class TodoController {
   @Autowired
   public TodoController(TodoRepository todoRepository) {
     this.todoRepository = todoRepository;
+    Todo todo1 = new Todo();
+    todo1.setTitle("Start the day");
+    Todo todo2 = new Todo();
+    todo2.setTitle("Finish H2");
+
+    todoRepository.save(todo1);
+    todoRepository.save(todo2);
   }
 
   @RequestMapping(path = {"/", "/list"}, method = RequestMethod.GET)
   public String list(Model model) {
-    List<Todo> todoItems = new ArrayList<>();
-    todoItems.add(new Todo(1, "Start the day", false, false));
-    todoItems.add(new Todo(2, "Finish H2", false, false));
-
-    model.addAttribute("todoItems", todoItems);
+    model.addAttribute("todos", todoRepository.findAll());
     return "todolist";
   }
 }
