@@ -1,10 +1,19 @@
 package com.greenfoxacademy.todos.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Todo {
+
+  @Id
   private long id;
   private String title;
   private boolean urgent;
   private boolean done;
+
+  public Todo() {
+  }
 
   public Todo(long id, String title, boolean urgent, boolean done) {
     this.id = id;
