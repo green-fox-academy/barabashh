@@ -8,6 +8,12 @@
 <h1>Todos for today:</h1>
 
 <table>
+    <tr>
+        <td>ID</td>
+        <td>TITLE</td>
+        <td>URGENT</td>
+        <td>DONE</td>
+    </tr>
     <tr th:each="todo : ${todos}" th:object="${todo}">
         <td th:text="*{id}"></td>
         <td th:text="*{title}"></td>
