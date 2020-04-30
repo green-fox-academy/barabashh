@@ -1,0 +1,13 @@
+html {
+    padding: 20px;
+    font-size: large;
+    text-align: center;
+}
+
+div {
+    text-align: left;
+}
+
+td {
+    padding: 5px 20px;
+}
