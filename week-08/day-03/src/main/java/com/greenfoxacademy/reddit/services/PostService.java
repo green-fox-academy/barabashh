@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface PostService {
-  public List<Post> returnAllPosts();
-  public void addExamplePosts();
-  public void addPost(Post post);
+  List<Post> returnAllPosts();
+  void addExamplePosts();
+  void addPost(Post post);
+  void changeVoteNumberOnPost(Long postId, int change);
 }

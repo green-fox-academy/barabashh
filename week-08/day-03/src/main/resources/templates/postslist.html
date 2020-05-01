@@ -11,8 +11,8 @@
 <table>
     <tr th:each="post : ${postList}" th:object="${post}">
         <td th:text="*{numVotes}"></td>
-        <td><a href="http://example.com">+</a></td>
-        <td><a href="http://example.com">-</a></td>
+        <td><a th:href="'changevote/' + *{id} + '/plus'">+</a></td>
+        <td><a th:href="'changevote/' + *{id} + '/minus'">-</a></td>
         <td><a th:href="*{link}" th:text="*{title}"></a></td>
     </tr>
 </table>
