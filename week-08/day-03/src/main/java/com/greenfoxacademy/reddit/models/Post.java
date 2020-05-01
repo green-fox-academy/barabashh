@@ -1,12 +1,13 @@
 package com.greenfoxacademy.reddit.models;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="posts")
-public class Post implements Comparable<Post>{
+@Entity(name = "posts")
+public class Post implements Comparable<Post> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +15,24 @@ public class Post implements Comparable<Post>{
   private String title;
   private String link;
   private int numVotes;
+  private Date date;
 
   public Post() {
   }
 
-  public Post(String title, String link, int numVotes) {
+  public Post(String title, String link, int numVotes, Date date) {
     this.title = title;
     this.link = link;
     this.numVotes = numVotes;
+    this.date = date;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   public Long getId() {
