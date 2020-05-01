@@ -18,7 +18,7 @@ public class MainController {
   @Autowired
   public MainController(PostService postService) {
     this.postService = postService;
-    this.postService.addExamplePosts();
+    //this.postService.addExamplePosts();
   }
 
   @GetMapping("/")
