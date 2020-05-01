@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="posts")
-public class Post {
+public class Post implements Comparable<Post>{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,5 +54,11 @@ public class Post {
 
   public void setNumVotes(int numVotes) {
     this.numVotes = numVotes;
+  }
+
+  @Override
+  public int compareTo(Post otherPost) {
+    Integer otherNumberOfVotes = otherPost.numVotes;
+    return otherNumberOfVotes.compareTo(this.numVotes);
   }
 }

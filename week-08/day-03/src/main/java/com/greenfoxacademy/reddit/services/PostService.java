@@ -9,5 +9,5 @@ public interface PostService {
   List<Post> returnAllPosts();
   void addExamplePosts();
   void addPost(Post post);
-  void changeVoteNumberOnPost(Long postId, int change);
+  void changeVoteNumberOnPost(Long postId, String change);
 }

@@ -41,10 +41,8 @@ public class MainController {
 
   @GetMapping("/changevote/{postId}/{change}")
   public String changeVote(@PathVariable(name = "postId") Long postId,
-                           @PathVariable(name = "change") String change){
-    if (change.equals("plus")) postService.changeVoteNumberOnPost(postId, 1);
-    if (change.equals("minus")) postService.changeVoteNumberOnPost(postId, -1);
-
+                           @PathVariable(name = "change") String change) {
+    postService.changeVoteNumberOnPost(postId, change);
     return "redirect:/";
   }
 }

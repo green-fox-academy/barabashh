@@ -4,6 +4,7 @@ import com.greenfoxacademy.reddit.models.Post;
 import com.greenfoxacademy.reddit.repositories.PostRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class PostServiceImpl implements PostService {
     postRepository
         .findAll()
         .forEach(posts::add);
-    return posts;
+    List<Post> orderedPosts = posts
+        .stream()
+        .sorted()
+        .collect(Collectors.toList());
+    return orderedPosts;
   }
 
   @Override
@@ -44,8 +49,13 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void changeVoteNumberOnPost(Long postId, int change) {
-    postRepository.changeVoteNumberOnPost(postId, change);
+  public void changeVoteNumberOnPost(Long postId, String change) {
+    if (change.equals("plus")) {
+      postRepository.changeVoteNumberOnPost(postId, 1);
+    }
+    if (change.equals("minus")) {
+      postRepository.changeVoteNumberOnPost(postId, -1);
+    }
   }
 
 }
