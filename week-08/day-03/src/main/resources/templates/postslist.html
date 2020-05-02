@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<nav>
+    <a th:each="number : ${pageNumbers}" th:text="${number} + ' '" th:href="'listposts/' + ${number}"></a>
+</nav>
 <div><a href="/addpost">Submit new post</a></div>
 <h1>Trending posts</h1>
 <table>

@@ -1,5 +1,7 @@
 package com.greenfoxacademy.reddit.services;
 
+import static java.util.stream.Collectors.toList;
+
 import com.greenfoxacademy.reddit.models.Post;
 import com.greenfoxacademy.reddit.repositories.PostRepository;
 import java.text.ParseException;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +26,27 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<Post> returnAllPosts() {
+  public List<Post> returnAllPosts(int limit, int pageNumber) {
     List<Post> posts = new ArrayList<>();
     postRepository
         .findAll()
         .forEach(posts::add);
+    int from = pageNumber * 3;
+    int to = (pageNumber + 1) * 3;
     return posts
         .stream()
         .sorted()
-        .collect(Collectors.toList());
+        .limit(limit)
+        .skip(from)
+        .limit(to - from)
+        .collect(toList());
+  }
+
+  @Override
+  public List<Integer> getPageNumberList(int limit) {
+    return IntStream.range(0, limit / 3)
+        .boxed()
+        .collect(toList());
   }
 
   @Override
@@ -43,6 +58,26 @@ public class PostServiceImpl implements PostService {
     postRepository.save(new Post("Motion sensors were not installed the right way",
         "http://example.com", 24, StringToDate("2018-02-20")));
     postRepository.save(new Post("This sign at my gym",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Face masks, where to buy?",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Back to Italy after May 4th",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("1st May: no public holiday",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("A good reason to store your tires a home",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Retention offer to handle company closure",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Does alcohol get bad?",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Personal experience contracting corona?",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Mortgage advaice required",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Tick Prevention - What are you using this…",
+        "http://example.com", 11, StringToDate("2017-12-01")));
+    postRepository.save(new Post("Money transfer limit from Switzerland to India",
         "http://example.com", 11, StringToDate("2017-12-01")));
   }
 
