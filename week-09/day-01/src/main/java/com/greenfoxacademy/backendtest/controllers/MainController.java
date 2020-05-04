@@ -4,19 +4,22 @@ import com.greenfoxacademy.backendtest.models.Appendable;
 import com.greenfoxacademy.backendtest.models.Doubling;
 import com.greenfoxacademy.backendtest.models.ErrorHandler;
 import com.greenfoxacademy.backendtest.models.Greeting;
+import com.greenfoxacademy.backendtest.models.NumberObject;
+import com.greenfoxacademy.backendtest.models.ResultObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class MainController {
@@ -39,6 +42,7 @@ public class MainController {
   }
 
   @GetMapping("/greeter")
+  @ResponseBody
   public ResponseEntity<?> greeter(@RequestParam(required = false) String name,
                                    @RequestParam(required = false) String title) {
     if (name == null && title == null) {
@@ -58,9 +62,32 @@ public class MainController {
   }
 
   @GetMapping("/appenda/{appendable}")
-  public ResponseEntity<Appendable> appendA (@PathVariable String appendable){
+  @ResponseBody
+  public ResponseEntity<Appendable> appendA(@PathVariable String appendable) {
     return new ResponseEntity<>(new Appendable(appendable + "a"),
         HttpStatus.OK);
+  }
+
+  //POST /dountil/{action
+  @PostMapping("/dountil/{action}")
+  public ResponseEntity<?> dountil(@PathVariable String action,
+                                   @RequestBody NumberObject number) {
+    if (action.equals("sum")) {
+      int sumOfNumbers = IntStream
+          .range(1, number.until + 1)
+          .reduce(0, Integer::sum);
+      ResultObject resultObject = new ResultObject(sumOfNumbers);
+      return new ResponseEntity<>(resultObject, HttpStatus.OK);
+    } else if (action.equals("factor")) {
+      int factorOfNumbers = IntStream
+          .range(1, number.until + 1)
+          .reduce(1, (a, b) -> a * b);
+      ResultObject resultObject = new ResultObject(factorOfNumbers);
+      return new ResponseEntity<>(resultObject, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(new ErrorHandler("Please provide a number!")
+          , HttpStatus.BAD_REQUEST);
+    }
   }
 
   @GetMapping("/arrays")
