@@ -1,10 +1,13 @@
 package com.greenfoxacademy.backendtest.controllers;
 
 import com.greenfoxacademy.backendtest.models.Doubling;
+import com.greenfoxacademy.backendtest.models.ErrorHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,11 +25,14 @@ public class MainController {
 
   @GetMapping("/doubling")
   @ResponseBody
-  public Doubling Doubling(@RequestParam(name = "input") int inputNumber) {
-    Doubling doubling = new Doubling();
-    doubling.received = inputNumber;
-    doubling.result = inputNumber * 2;
-    return doubling;
+  public ResponseEntity<?> Doubling(@RequestParam(name = "input", required = false) Integer inputNumber) {
+    if (inputNumber == null) {
+      ErrorHandler errHandler = new ErrorHandler("Please provide an input!");
+      return new ResponseEntity<>(errHandler, HttpStatus.OK);
+    } else {
+      Doubling doubling = new Doubling(inputNumber, inputNumber * 2);
+      return new ResponseEntity<>(doubling, HttpStatus.OK);
+    }
   }
 
   @GetMapping("/arrays")
@@ -49,17 +55,17 @@ public class MainController {
     }
     if (what.equals("double")) {
       List<Integer> result =
-      numbers
-          .stream()
-          .map(n -> n * 2)
-          .collect(Collectors.toList());
+          numbers
+              .stream()
+              .map(n -> n * 2)
+              .collect(Collectors.toList());
       return String.valueOf(result);
     }
     return "hello";
   }
 
   @GetMapping("/sith")
-  public String applySithReverser(){
+  public String applySithReverser() {
     String text = "This is my example sentence. Just for fun.";
 
     return "Yoda";
