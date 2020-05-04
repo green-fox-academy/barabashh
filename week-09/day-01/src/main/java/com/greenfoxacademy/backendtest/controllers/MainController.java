@@ -6,11 +6,13 @@ import com.greenfoxacademy.backendtest.models.ErrorHandler;
 import com.greenfoxacademy.backendtest.models.Greeting;
 import com.greenfoxacademy.backendtest.models.NumberObject;
 import com.greenfoxacademy.backendtest.models.ResultObject;
+import com.greenfoxacademy.backendtest.services.BackEndService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 
+  private BackEndService backEndService;
+
+  @Autowired
+  public MainController(BackEndService backEndService) {
+    this.backEndService = backEndService;
+  }
+
   @GetMapping("/")
   public String index() {
     return "index";
@@ -31,14 +40,9 @@ public class MainController {
 
   @GetMapping("/doubling")
   @ResponseBody
-  public ResponseEntity<?> doubling(@RequestParam(name = "input", required = false) Integer inputNumber) {
-    if (inputNumber == null) {
-      ErrorHandler errHandler = new ErrorHandler("Please provide an input!");
-      return new ResponseEntity<>(errHandler, HttpStatus.OK);
-    } else {
-      Doubling doubling = new Doubling(inputNumber, inputNumber * 2);
-      return new ResponseEntity<>(doubling, HttpStatus.OK);
-    }
+  public ResponseEntity<?> doubling(
+      @RequestParam(name = "input", required = false) Integer inputNumber) {
+    return backEndService.doubleNumber(inputNumber);
   }
 
   @GetMapping("/greeter")
