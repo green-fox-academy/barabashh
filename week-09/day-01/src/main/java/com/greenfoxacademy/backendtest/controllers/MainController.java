@@ -2,6 +2,7 @@ package com.greenfoxacademy.backendtest.controllers;
 
 import com.greenfoxacademy.backendtest.models.Doubling;
 import com.greenfoxacademy.backendtest.models.ErrorHandler;
+import com.greenfoxacademy.backendtest.models.Greeting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,19 +20,38 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
   @GetMapping("/")
-  public String Index() {
+  public String index() {
     return "index";
   }
 
   @GetMapping("/doubling")
   @ResponseBody
-  public ResponseEntity<?> Doubling(@RequestParam(name = "input", required = false) Integer inputNumber) {
+  public ResponseEntity<?> doubling(@RequestParam(name = "input", required = false) Integer inputNumber) {
     if (inputNumber == null) {
       ErrorHandler errHandler = new ErrorHandler("Please provide an input!");
       return new ResponseEntity<>(errHandler, HttpStatus.OK);
     } else {
       Doubling doubling = new Doubling(inputNumber, inputNumber * 2);
       return new ResponseEntity<>(doubling, HttpStatus.OK);
+    }
+  }
+
+  @GetMapping("/greeter")
+  public ResponseEntity<?> greeter(@RequestParam(required = false) String name,
+                                   @RequestParam(required = false) String title) {
+    if (name == null && title == null) {
+      return new ResponseEntity<>(
+          new ErrorHandler("Please provide a name and a title!"), HttpStatus.BAD_REQUEST);
+    } else if (name == null) {
+      return new ResponseEntity<>(
+          new ErrorHandler("Please provide a name!"), HttpStatus.BAD_REQUEST);
+    } else if (title == null) {
+      return new ResponseEntity<>(
+          new ErrorHandler("Please provide a title!"), HttpStatus.BAD_REQUEST);
+    } else {
+      return new ResponseEntity<>(
+          new Greeting("Oh, hi there " + name + ", my dear " + title + "!")
+          , HttpStatus.OK);
     }
   }
 
