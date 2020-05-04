@@ -1,5 +1,6 @@
 package com.greenfoxacademy.backendtest.controllers;
 
+import com.greenfoxacademy.backendtest.models.Appendable;
 import com.greenfoxacademy.backendtest.models.Doubling;
 import com.greenfoxacademy.backendtest.models.ErrorHandler;
 import com.greenfoxacademy.backendtest.models.Greeting;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,6 +55,12 @@ public class MainController {
           new Greeting("Oh, hi there " + name + ", my dear " + title + "!")
           , HttpStatus.OK);
     }
+  }
+
+  @GetMapping("/appenda/{appendable}")
+  public ResponseEntity<Appendable> appendA (@PathVariable String appendable){
+    return new ResponseEntity<>(new Appendable(appendable + "a"),
+        HttpStatus.OK);
   }
 
   @GetMapping("/arrays")
