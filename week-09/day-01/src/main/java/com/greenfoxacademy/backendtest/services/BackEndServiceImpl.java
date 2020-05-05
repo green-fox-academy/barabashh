@@ -1,10 +1,16 @@
 package com.greenfoxacademy.backendtest.services;
 
+import com.greenfoxacademy.backendtest.models.ArrayHandler;
 import com.greenfoxacademy.backendtest.models.Doubling;
 import com.greenfoxacademy.backendtest.models.ErrorHandler;
 import com.greenfoxacademy.backendtest.models.Greeting;
 import com.greenfoxacademy.backendtest.models.NumberObject;
 import com.greenfoxacademy.backendtest.models.ResultObject;
+import com.greenfoxacademy.backendtest.models.ResultObjectWithStringResult;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +74,38 @@ public class BackEndServiceImpl implements BackEndService {
     } else {
       return new ResponseEntity<>(new ErrorHandler("Please provide a number!")
           , HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Override
+  public ResponseEntity<?> arrayHandler(ArrayHandler arrayHandler) {
+    if (arrayHandler.what == null || arrayHandler.what.equals("") || arrayHandler.numbers == null) {
+      return new ResponseEntity<>(new ErrorHandler("Please provide what to do with the numbers!"),
+          HttpStatus.BAD_REQUEST);
+    }
+    switch (arrayHandler.what) {
+      case "sum":
+        Integer sum = arrayHandler.numbers
+            .stream()
+            .reduce(0, Integer::sum);
+        return new ResponseEntity<>(new ResultObject(sum), HttpStatus.OK);
+      case "multiply": {
+        Integer result = arrayHandler.numbers
+            .stream()
+            .reduce(1, (a, b) -> a * b);
+        return new ResponseEntity<>(new ResultObject(result), HttpStatus.OK);
+      }
+      case "double": {
+        List<Integer> result =
+            arrayHandler.numbers
+                .stream()
+                .map(n -> n * 2)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(new ResultObjectWithStringResult(result.toString()), HttpStatus.OK);
+      }
+      default:
+        return new ResponseEntity<>(new ErrorHandler("Please provide what to do with the numbers!"),
+            HttpStatus.BAD_REQUEST);
     }
   }
 }

@@ -1,19 +1,14 @@
 package com.greenfoxacademy.backendtest.controllers;
 
 import com.greenfoxacademy.backendtest.models.Appendable;
-import com.greenfoxacademy.backendtest.models.Doubling;
-import com.greenfoxacademy.backendtest.models.ErrorHandler;
-import com.greenfoxacademy.backendtest.models.Greeting;
+import com.greenfoxacademy.backendtest.models.ArrayHandler;
 import com.greenfoxacademy.backendtest.models.NumberObject;
-import com.greenfoxacademy.backendtest.models.ResultObject;
 import com.greenfoxacademy.backendtest.services.BackEndService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,33 +60,10 @@ public class MainController {
     return backEndService.dountil(action, number);
   }
 
-  @GetMapping("/arrays")
+  @PostMapping("/arrays")
   @ResponseBody
-  public String arrayHandler() {
-    String what = "double";
-    //int[] numbers = {1, 2, 5, 10};
-    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 5, 10));
-    if (what.equals("sum")) {
-      Integer sum = numbers
-          .stream()
-          .reduce(0, Integer::sum);
-      return String.valueOf(sum);
-    }
-    if (what.equals("multiply")) {
-      Integer result = numbers
-          .stream()
-          .reduce(1, (a, b) -> a * b);
-      return String.valueOf(result);
-    }
-    if (what.equals("double")) {
-      List<Integer> result =
-          numbers
-              .stream()
-              .map(n -> n * 2)
-              .collect(Collectors.toList());
-      return String.valueOf(result);
-    }
-    return "hello";
+  public ResponseEntity<?> arrayHandler(@RequestBody ArrayHandler arrayHandler) {
+    return backEndService.arrayHandler(arrayHandler);
   }
 
   @GetMapping("/sith")

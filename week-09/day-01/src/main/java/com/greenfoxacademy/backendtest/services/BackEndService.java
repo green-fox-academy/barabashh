@@ -1,5 +1,6 @@
 package com.greenfoxacademy.backendtest.services;
 
+import com.greenfoxacademy.backendtest.models.ArrayHandler;
 import com.greenfoxacademy.backendtest.models.NumberObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,4 +14,6 @@ public interface BackEndService {
   ResponseEntity<com.greenfoxacademy.backendtest.models.Appendable> appendA(String appendable);
 
   ResponseEntity<?> dountil(String action, NumberObject number);
+
+  ResponseEntity<?> arrayHandler(ArrayHandler arrayHandler);
 }
