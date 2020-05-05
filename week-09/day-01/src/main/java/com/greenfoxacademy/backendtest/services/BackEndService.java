@@ -16,4 +16,6 @@ public interface BackEndService {
   ResponseEntity<?> dountil(String action, NumberObject number);
 
   ResponseEntity<?> arrayHandler(ArrayHandler arrayHandler);
+
+  void logTransaction(String endPoint, String data);
 }
