@@ -49,49 +49,20 @@ public class MainController {
   @ResponseBody
   public ResponseEntity<?> greeter(@RequestParam(required = false) String name,
                                    @RequestParam(required = false) String title) {
-    if (name == null && title == null) {
-      return new ResponseEntity<>(
-          new ErrorHandler("Please provide a name and a title!"), HttpStatus.BAD_REQUEST);
-    } else if (name == null) {
-      return new ResponseEntity<>(
-          new ErrorHandler("Please provide a name!"), HttpStatus.BAD_REQUEST);
-    } else if (title == null) {
-      return new ResponseEntity<>(
-          new ErrorHandler("Please provide a title!"), HttpStatus.BAD_REQUEST);
-    } else {
-      return new ResponseEntity<>(
-          new Greeting("Oh, hi there " + name + ", my dear " + title + "!")
-          , HttpStatus.OK);
-    }
+    return backEndService.greeter(name, title);
   }
 
   @GetMapping("/appenda/{appendable}")
   @ResponseBody
   public ResponseEntity<Appendable> appendA(@PathVariable String appendable) {
-    return new ResponseEntity<>(new Appendable(appendable + "a"),
-        HttpStatus.OK);
+    return backEndService.appendA(appendable);
   }
 
-  //POST /dountil/{action
   @PostMapping("/dountil/{action}")
+  @ResponseBody
   public ResponseEntity<?> dountil(@PathVariable String action,
                                    @RequestBody NumberObject number) {
-    if (action.equals("sum")) {
-      int sumOfNumbers = IntStream
-          .range(1, number.until + 1)
-          .reduce(0, Integer::sum);
-      ResultObject resultObject = new ResultObject(sumOfNumbers);
-      return new ResponseEntity<>(resultObject, HttpStatus.OK);
-    } else if (action.equals("factor")) {
-      int factorOfNumbers = IntStream
-          .range(1, number.until + 1)
-          .reduce(1, (a, b) -> a * b);
-      ResultObject resultObject = new ResultObject(factorOfNumbers);
-      return new ResponseEntity<>(resultObject, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(new ErrorHandler("Please provide a number!")
-          , HttpStatus.BAD_REQUEST);
-    }
+    return backEndService.dountil(action, number);
   }
 
   @GetMapping("/arrays")
