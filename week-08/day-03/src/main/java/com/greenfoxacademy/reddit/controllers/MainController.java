@@ -31,7 +31,7 @@ public class MainController {
     return "redirect:/listposts";
   }
 
-  @GetMapping("/listposts")
+  @GetMapping({"/listposts","/"})
   public String listPosts(Model model) {
     model.addAttribute("posts",
         postService.returnAllPosts(NUMBER_OF_POSTS_RETURNED, currentPageNumber));
@@ -41,8 +41,7 @@ public class MainController {
   }
 
   @GetMapping("/addpost")
-  public String getAddPostsPage(Model model) {
-    model.addAttribute("post", new Post());
+  public String getAddPostsPage() {
     return "addpost";
   }
 

@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<form method="POST" th:action="@{/addpost}" th:object="${post}">
+<form method="POST" th:action="@{/addpost}">
     <h1>Submit a new post</h1>
     <Label>Title:</Label>
-    <input type="text" th:field="*{title}" placeholder="Whoa what a gif" /><br><br>
+    <input type="text" name="title" placeholder="Whoa what a gif" /><br><br>
     <Label>URL:</Label>
-    <input type="text"  th:field="*{link}" placeholder="https://media.giphy.com"><br><br>
+    <input type="text" name="link" placeholder="https://media.giphy.com"><br><br>
     <button type="submit">Submit</button>
 </form>
 </body>
