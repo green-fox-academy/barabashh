@@ -32,7 +32,7 @@ public class MainController {
 
   @GetMapping("/listposts")
   public String listPosts(Model model) {
-    model.addAttribute("postList",
+    model.addAttribute("posts",
         postService.returnAllPosts(NUMBER_OF_POSTS_RETURNED, currentPageNumber));
     model.addAttribute("pageNumbers",
         postService.getPageNumberList(NUMBER_OF_POSTS_RETURNED));

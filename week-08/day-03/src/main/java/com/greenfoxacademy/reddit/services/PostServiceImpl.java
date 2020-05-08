@@ -6,11 +6,9 @@ import com.greenfoxacademy.reddit.models.Post;
 import com.greenfoxacademy.reddit.repositories.PostRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +25,10 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public List<Post> returnAllPosts(int limit, int pageNumber) {
-    List<Post> posts = new ArrayList<>();
-    postRepository
-        .findAll()
-        .forEach(posts::add);
     int from = pageNumber * 3;
     int to = (pageNumber + 1) * 3;
-    return posts
+    return
+        ((List<Post>)postRepository.findAll())
         .stream()
         .sorted()
         .limit(limit)

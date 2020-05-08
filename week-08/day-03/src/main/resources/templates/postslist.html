@@ -12,7 +12,7 @@
 <div><a href="/addpost">Submit new post</a></div>
 <h1>Trending posts</h1>
 <table>
-    <tr th:each="post : ${postList}" th:object="${post}">
+    <tr th:each="post : ${posts}" th:object="${post}">
         <td th:text="*{numVotes}"></td>
         <td><a th:href="'changevote/' + *{id} + '/plus'">+</a></td>
         <td><a th:href="'changevote/' + *{id} + '/minus'">-</a></td>

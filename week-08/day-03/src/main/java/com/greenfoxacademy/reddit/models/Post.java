@@ -39,32 +39,16 @@ public class Post implements Comparable<Post> {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
   public String getTitle() {
     return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
   }
 
   public String getLink() {
     return link;
   }
 
-  public void setLink(String link) {
-    this.link = link;
-  }
-
   public int getNumVotes() {
     return numVotes;
-  }
-
-  public void setNumVotes(int numVotes) {
-    this.numVotes = numVotes;
   }
 
   @Override
