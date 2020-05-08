@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity(name = "posts")
 public class Post implements Comparable<Post> {
@@ -12,7 +14,13 @@ public class Post implements Comparable<Post> {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @NotEmpty
+  @Size(min=3, max = 50)
   private String title;
+
+  @NotEmpty
+  @Size(min=6, max = 50)
   private String link;
   private int numVotes;
   private Date date;
@@ -39,16 +47,32 @@ public class Post implements Comparable<Post> {
     return id;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getTitle() {
     return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getLink() {
     return link;
   }
 
+  public void setLink(String link) {
+    this.link = link;
+  }
+
   public int getNumVotes() {
     return numVotes;
+  }
+
+  public void setNumVotes(int numVotes) {
+    this.numVotes = numVotes;
   }
 
   @Override

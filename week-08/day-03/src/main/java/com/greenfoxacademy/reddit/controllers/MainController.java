@@ -3,9 +3,11 @@ package com.greenfoxacademy.reddit.controllers;
 import com.greenfoxacademy.reddit.models.Post;
 import com.greenfoxacademy.reddit.services.PostService;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,6 @@ public class MainController {
   @Autowired
   public MainController(PostService postService) {
     this.postService = postService;
-    //this.postService.addExamplePosts();
   }
 
   @GetMapping("/listposts/{pageNumber}")
@@ -46,7 +47,10 @@ public class MainController {
   }
 
   @PostMapping("/addpost")
-  public String addPosts(@ModelAttribute(value = "post") Post post) {
+  public String addPosts(@Valid @ModelAttribute Post post, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()){
+      return "addpost";
+    }
     postService.addPost(post);
     return "redirect:/listposts";
   }
