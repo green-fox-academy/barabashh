@@ -6,17 +6,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<ul>
-    <li>
-        <a href="https://www.w3schools.com">Information</a>
-    </li>
-</ul>
+<div th:replace="navigation :: navBar (${name})"></div>
 <img src="greenfox.png" alt="Green Fox">
-<p>This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.</p>
-<h1>Known tricks</h1>
-<ul>
-    <li>write HTML</li>
-    <li>code in java</li>
-</ul>
+<p th:text="'This is ' + ${fox.getName()} + '. Currently living on ' + ${#strings.toLowerCase(fox.getFood())} + ' and '
++ ${#strings.toLowerCase(fox.getDrink())} + '. He knows ' + (${fox.getTricks() == null} ? '0' : ${fox.getTricks().size()}) + ' tricks.'"></p>
+<div th:if="${fox.getTricks() == null}">
+    <h1>You know no tricks, yet. Go and learn some.</h1>
+</div>
+<div th:unless="${fox.getTricks() == null}">
+    <h1>Known tricks</h1>
+    <ul th:each="trick : ${fox.getTricks()}">
+        <li th:text="${trick}"></li>
+    </ul>
+</div>
 </body>
 </html>

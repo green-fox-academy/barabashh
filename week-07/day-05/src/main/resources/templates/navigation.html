@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="navBar (name)">
+    <ul>
+        <li><a th:href="${'/information?name=' + name}" th:text="'Information'"></a></li>
+        <li><a th:href="${'/nutritionStore?name=' + name}" th:text="'Nutrition Store'"></a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+</div>
+</body>
+</html>

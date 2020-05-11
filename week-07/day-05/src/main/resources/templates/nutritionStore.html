@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="navigation :: navBar (${name})"></div>
+Food pizza Drink lemonade [Change]
+<form th:action="${'/nutritionStore?name=' + name}" method="post">
+    <input type="text" id="foodChoice" name="foodChoice"/>
+    <select>
+        <option th:each="foodNameItem : ${foodNames}"
+                th:value="${foodNameItem}"
+                th:text="${foodNameItem}">
+        </option>
+    </select>
+    <!--
+        <input type="text" th:field="*{title}" />
+        <select>
+            <option th:each="foodItem : ${T(com.greenfoxacademy.programmerfoxclub.models.Fox.Food).values()}"
+                    th:value="${foodItem}"
+                    th:text="${foodItem}">
+            </option>
+        </select>
+    -->
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
