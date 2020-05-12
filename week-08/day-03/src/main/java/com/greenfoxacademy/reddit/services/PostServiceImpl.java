@@ -27,6 +27,7 @@ public class PostServiceImpl implements PostService {
   public List<Post> returnAllPosts(int limit, int pageNumber) {
     int from = pageNumber * 3;
     int to = (pageNumber + 1) * 3;
+    Object obj = postRepository.findAll();
     return
         ((List<Post>)postRepository.findAll())
         .stream()
@@ -76,7 +77,7 @@ public class PostServiceImpl implements PostService {
         "http://example.com", 11, StringToDate("2017-12-01")));
   }
 
-  public Date StringToDate(String s) {
+  public static Date StringToDate(String s) {
 
     Date result = null;
     try {

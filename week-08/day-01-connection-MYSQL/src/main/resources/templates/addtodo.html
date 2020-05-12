@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Items List</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-$END$
+<form action="/addTodo" th:object="${todo}" method="post">
+    <label for="title">Title</label>
+    <input type="text" id="title"th:field="*{id}" />
+
+    <label for="urgent">Urgent</label>
+    <input type="text" id="urgent"th:field="*{id}" />
+
+    <label for="isDone">IsItDone</label>
+    <input type="text" id="isDone" th:field="*{id}" />
+
+    <button type="submit">Add</button>
+</form>
 </body>
 </html>

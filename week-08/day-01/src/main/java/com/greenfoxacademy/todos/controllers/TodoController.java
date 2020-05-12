@@ -1,9 +1,6 @@
 package com.greenfoxacademy.todos.controllers;
 
-import com.greenfoxacademy.todos.models.Todo;
 import com.greenfoxacademy.todos.repositories.TodoRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

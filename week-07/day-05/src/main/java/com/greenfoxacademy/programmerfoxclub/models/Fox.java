@@ -11,7 +11,10 @@ public class Fox {
 
   public enum Food {
     PIZZA,
-    SALAD
+    SALAD;
+
+    Food() {
+    }
   }
 
   private String name;

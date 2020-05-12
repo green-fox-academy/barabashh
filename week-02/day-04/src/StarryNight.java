@@ -1,3 +1,4 @@
+import java.awt.image.ImageObserver;
 import javax.swing.*;
 
 import java.awt.*;
@@ -21,6 +22,11 @@ public class StarryNight {
       int size = (int) (Math.random() * 6);
       graphics.fillRect(randX, randY, size, size);
     }
+    //Image img = new Image();
+/*
+    graphics.drawImage(img,
+    10,10, null);
+*/
   }
 
   // Don't touch the code below

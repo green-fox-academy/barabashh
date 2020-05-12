@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Login</title>
+    <link href="./styles.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<form action="/login" method="POST">
+    <h1>ACCOUNT&nbsp;LOGIN</h1>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autofocus required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <span class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+    <label id="forgotPwd">Forgot Password?</label>
+
+    <button>Login</button>
+
+</form>
 </body>
 </html>

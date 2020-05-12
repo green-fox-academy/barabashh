@@ -8,11 +8,10 @@
 <div th:replace="navigation :: navBar (${name})"></div>
 Food pizza Drink lemonade [Change]
 <form th:action="${'/nutritionStore?name=' + name}" method="post">
-    <input type="text" id="foodChoice" name="foodChoice"/>
-    <select>
-        <option th:each="foodNameItem : ${foodNames}"
-                th:value="${foodNameItem}"
-                th:text="${foodNameItem}">
+    <select name="foodName">
+        <option th:each="foodName : ${foodNames}"
+                th:value="${foodName}"
+                th:text="${foodName}">
         </option>
     </select>
     <!--

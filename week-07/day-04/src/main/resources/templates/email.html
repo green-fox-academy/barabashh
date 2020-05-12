@@ -7,8 +7,6 @@
 </head>
 <body>
 <a href="/useful">Home</a>
-<!--<span th:if="${isValid}" th:text="${emailAddress} + ' is a valid email address'"></span>-->
-<!--<span th:unless="${isValid}" th:text="${emailAddress} + ' is not a valid email address'"></span>-->
 <span th:text="${emailAddress} + ' is ' + (${isValid} ? '' : 'not ') + 'a valid email address'"
       th:style="${isValid} ? 'color: green;' : 'color: red;'"></span>
 </body>

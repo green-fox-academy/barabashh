@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>URL aliaser</title>
+    <style>
+        input, label{
+     display: block;
+    }
+    </style>
 </head>
 <body>
-$END$
+<div th:if="${aliasinuse == true}">
+    <h1 style="color:red">Your alias is already in use!</h1>
+</div>
+<form action="/save-link" method="post">
+    <label for="url">URL</label>
+    <input type="url" id="url" name="url" required>
+    <label for="alias">Alias</label>
+    <input type="text" id="alias" name="alias" required>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

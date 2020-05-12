@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,7 +70,7 @@ public class MainController {
 
   @PostMapping(path = "/nutritionStore")
   public String nutritionStorePost(@RequestParam(required = false) String name
-      ,@RequestParam String foodChoice, Model model) {
+      ,@RequestParam String foodName, Model model) {
     return "nutritionStore";
   }
 }
