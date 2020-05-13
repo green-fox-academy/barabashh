@@ -78,6 +78,10 @@ public class Post implements Comparable<Post> {
   @Override
   public int compareTo(Post otherPost) {
     Integer otherNumberOfVotes = otherPost.numVotes;
+    if (otherNumberOfVotes == this.numVotes){
+      String otherTitle = otherPost.title;
+      return otherTitle.compareTo(this.title);
+    }
     return otherNumberOfVotes.compareTo(this.numVotes);
   }
 }
