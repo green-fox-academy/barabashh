@@ -1,5 +1,6 @@
 package com.greenfoxacademy.aliaser.controllers;
 
+import com.greenfoxacademy.aliaser.exceptions.ResourceNotFoundException;
 import com.greenfoxacademy.aliaser.models.Aliaser;
 import com.greenfoxacademy.aliaser.services.AliasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,15 +54,14 @@ public class MainController {
   }
 
   @GetMapping("/a/{alias}")
-  public String redirectToUrl(@PathVariable String alias) {
+  public String redirectToUrl(@PathVariable String alias) throws ResourceNotFoundException {
     if (aliasService.findIfAliasExists(alias)) {
       Aliaser aliaser = aliasService.findAliaserByAlias(alias);
       aliaser.setHitNumber(aliaser.getHitNumber() + 1);
       aliasService.saveAliaser(aliaser);
       return "redirect:" + aliaser.getLink();
     } else {
-      return "redirect:nonexistingplace";
-      //throw new Exception(Status.Http)
+      throw new ResourceNotFoundException();
     }
   }
 
