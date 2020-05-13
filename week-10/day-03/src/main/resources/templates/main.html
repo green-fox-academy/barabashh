@@ -20,7 +20,7 @@
 <br><br>
 <form action="/save-link" method="post">
     <label for="url">URL</label>
-    <input type="text" th:value="${link}" id="url" name="link">
+    <input type="url" th:value="${link}" id="url" name="link">
     <label for="alias">Alias</label>
     <input type="text" th:value="${alias}" id="alias" name="alias">
     <button type="submit">Submit</button>

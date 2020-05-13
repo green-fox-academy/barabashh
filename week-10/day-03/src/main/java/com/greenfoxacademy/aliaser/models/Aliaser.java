@@ -33,8 +33,12 @@ public class Aliaser {
     this.hitNumber = hitNumber;
   }
 
-  public Aliaser(){
+  public Aliaser() {
 
+  }
+
+  public Long getId() {
+    return id;
   }
 
   public String getLink() {
@@ -69,11 +73,11 @@ public class Aliaser {
     this.hitNumber = hitNumber;
   }
 
-  public static String generateSecreCode(){
+  public static String generateSecreCode() {
     String code = "";
     Random random = new Random();
     for (int i = 0; i < 4; i++) {
-      code+= random.nextInt(10);
+      code += random.nextInt(10);
     }
     return code;
   }
